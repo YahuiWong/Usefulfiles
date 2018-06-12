@@ -147,7 +147,7 @@ if ! type ss-tproxy 2>/dev/null; then
     cp -af pdnsd.conf /etc/tproxy/
     cp -af chnroute.txt /etc/tproxy/
     cp -af chnroute.ipset /etc/tproxy/
-    cp -af ss-tproxy.conf /etc/tproxy/
+    #cp -af ss-tproxy.conf /etc/tproxy/
     chown -R root:root /etc/tproxy
     chmod 0644 /etc/tproxy/*
     popd
