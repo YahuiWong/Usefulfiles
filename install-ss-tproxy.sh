@@ -164,7 +164,9 @@ fi
 bigecho "#######################################################"
 bigecho "Please modify /etc/tproxy/ss-tproxy.conf before start."
 bigecho "#ss-tproxy update_chnip"
+ss-tproxy update_chnip
 bigecho "#ss-tproxy start"
+ss-tproxy start
 bigecho "#######################################################"
 bigecho "ss-tunnel 测试"
 dig @127.0.0.1 -p60053 www.google.com
