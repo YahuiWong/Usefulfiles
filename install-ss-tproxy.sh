@@ -164,13 +164,13 @@ fi
 bigecho "#######################################################"
 bigecho "Please modify /etc/tproxy/ss-tproxy.conf before start."
 bigecho "#ss-tproxy update_chnip"
-ss-tproxy update_chnip
+#ss-tproxy update_chnip
 bigecho "#ss-tproxy start"
-ss-tproxy start
-bigecho "#######################################################"
-bigecho "ss-tunnel 测试"
-dig @127.0.0.1 -p60053 www.google.com
-bigecho "国内 DNS 测试"
-dig @114.114.114.114 -p53 www.baidu.com
-bigecho "ss-redir 测试"
-dig @208.67.222.222 -p443 www.google.com
+#ss-tproxy start
+#bigecho "#######################################################"
+#bigecho "ss-tunnel 测试"
+#dig @127.0.0.1 -p60053 www.google.com
+#bigecho "国内 DNS 测试"
+#dig @114.114.114.114 -p53 www.baidu.com
+#bigecho "ss-redir 测试"
+#dig @208.67.222.222 -p443 www.google.com
