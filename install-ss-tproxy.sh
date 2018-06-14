@@ -13,7 +13,8 @@ bigecho()  { echo; echo -e "\033[36m $1 \033[0m"; }
 bigecho "Disable Firewall..."
 systemctl stop firewalld.service
 systemctl disable firewalld.service
-
+# 查找 TPROXY 模块
+find /lib/modules/$(uname -r) -type f -name '*.ko*' | grep 'xt_TPROXY'
 # Install Lib
 bigecho "Install Library, Pleast wait..."
 yum -y install git gettext gcc autoconf libtool make asciidoc xmlto c-ares-devel libev-devel \
@@ -36,33 +37,33 @@ if ! type pdnsd 2>/dev/null; then
     PDNSD_URL="http://members.home.nl/p.a.rombouts/pdnsd/releases/pdnsd-$PDNSD_VER-par_sl6.x86_64.rpm"
     yum -y install "$PDNSD_URL" || exiterr2
 fi
+# udp don`t need thisdnsforwarder
+# # Build aclocal-1.15, it's needed by dnsforwarder
+# if ! type aclocal-1.15 2>/dev/null; then
+#     bigecho "Build aclocal-1.15, Pleast wait..."
+#     AUTOMAKE_VER=1.15
+#     AUTOMAKE_FILE="automake-$AUTOMAKE_VER"
+#     AUTOMAKE_URL="https://ftp.gnu.org/gnu/automake/$AUTOMAKE_FILE.tar.gz"
+#     if ! wget --no-check-certificate -O $AUTOMAKE_FILE.tar.gz $AUTOMAKE_URL; then
+#         bigecho "Failed to download file!"
+#         exit 1
+#     fi
+#     tar xf $AUTOMAKE_FILE.tar.gz
+#     pushd $AUTOMAKE_FILE
+#     ./configure
+#     make && make install
+#     popd
+# fi
 
-# Build aclocal-1.15, it's needed by dnsforwarder
-if ! type aclocal-1.15 2>/dev/null; then
-    bigecho "Build aclocal-1.15, Pleast wait..."
-    AUTOMAKE_VER=1.15
-    AUTOMAKE_FILE="automake-$AUTOMAKE_VER"
-    AUTOMAKE_URL="https://ftp.gnu.org/gnu/automake/$AUTOMAKE_FILE.tar.gz"
-    if ! wget --no-check-certificate -O $AUTOMAKE_FILE.tar.gz $AUTOMAKE_URL; then
-        bigecho "Failed to download file!"
-        exit 1
-    fi
-    tar xf $AUTOMAKE_FILE.tar.gz
-    pushd $AUTOMAKE_FILE
-    ./configure
-    make && make install
-    popd
-fi
-
-# Build dnsforwarder
-if ! type dnsforwarder 2>/dev/null; then
-    bigecho "Build dnsforwarder, Pleast wait..."
-    git clone https://github.com/holmium/dnsforwarder.git
-    pushd dnsforwarder
-    ./configure --enable-downloader=no
-    make && make install
-    popd
-fi
+# # Build dnsforwarder
+# if ! type dnsforwarder 2>/dev/null; then
+#     bigecho "Build dnsforwarder, Pleast wait..."
+#     git clone https://github.com/holmium/dnsforwarder.git
+#     pushd dnsforwarder
+#     ./configure --enable-downloader=no
+#     make && make install
+#     popd
+# fi
 
 # Build chinadns
 if ! type chinadns 2>/dev/null; then
