@@ -13,13 +13,14 @@ bigecho()  { echo; echo -e "\033[36m $1 \033[0m"; }
 bigecho "Disable Firewall..."
 systemctl stop firewalld.service
 systemctl disable firewalld.service
-# 查找 TPROXY 模块
-find /lib/modules/$(uname -r) -type f -name '*.ko*' | grep 'xt_TPROXY'
+
 # Install Lib
 bigecho "Install Library, Pleast wait..."
 yum -y install git gettext gcc autoconf libtool make asciidoc xmlto c-ares-devel libev-devel \
   openssl-devel net-tools curl ipset iproute perl wget gcc bind-utils vim || exiterr2
 
+# 查找 TPROXY 模块
+find /lib/modules/$(uname -r) -type f -name '*.ko*' | grep 'xt_TPROXY'
 # Install haveged
 if ! type haveged 2>/dev/null; then
     bigecho "Install Haveged, Pleast wait..."
