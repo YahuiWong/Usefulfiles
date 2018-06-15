@@ -118,7 +118,7 @@ if [ ! -f "/usr/lib/libmbedtls.so" ]; then
     popd
     ldconfig
 fi
-git config http.postBuffer 524288000
+git config --global http.postBuffer 524288000
 #Build shadowsocksr-libev
 if ! type ssr-redir 2>/dev/null; then
     bigecho "Build shadowsocksr-libev, Pleast wait..."
