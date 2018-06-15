@@ -142,7 +142,8 @@ if ! type ss-tun2socks 2>/dev/null; then
     git clone https://github.com/YahuiWong/ss-tun2socks.git
     pushd ss-tun2socks
     cp -af ss-tun2socks /usr/local/bin/
-    cp -af tun2socks.bin/tun2socks.x86_64 /usr/local/bin/tun2socks #（先解压，注意 ARCH）
+	wget https://github.com/YahuiWong/Usefulfiles/raw/master/tun2socks.bin/tun2socks.x86_64
+    cp -af tun2socks.x86_64 /usr/local/bin/tun2socks
     chown root:root /usr/local/bin/tun2socks /usr/local/bin/ss-tun2socks
     chmod +x /usr/local/bin/tun2socks /usr/local/bin/ss-tun2socks
     mkdir -m 0755 -p /etc/tun2socks
