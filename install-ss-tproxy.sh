@@ -168,5 +168,3 @@ bigecho "Please modify /etc/tproxy/ss-tproxy.conf before start."
 bigecho "#ss-tproxy update_chnip"
 bigecho "#ss-tproxy start"
 bigecho "#######################################################"
-
-exit 0
