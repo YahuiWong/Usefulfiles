@@ -139,7 +139,6 @@ if ! type ss-tproxy 2>/dev/null; then
     bigecho "Install SS-TProxy, Pleast wait..."
     git clone https://github.com/YahuiWong/ss-tproxy.git
     pushd ss-tproxy
-    git checkout v1-tcponly
     cp -af ss-tproxy /usr/local/bin/
     cp -af ss-switch /usr/local/bin/
     chown root:root /usr/local/bin/ss-tproxy /usr/local/bin/ss-switch
